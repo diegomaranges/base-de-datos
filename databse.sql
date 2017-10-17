@@ -5,18 +5,21 @@ https://www.w3schools.com/sql/default.asp*/
 
 CREATE TABLE funcion(
     id_funcion int NOT NULL AUTO_INCREMENT,
+    sueldo_por_hora int NOT NULL,
     nombre_funcion varchar(100) NOT NULL,
     PRIMARY KEY (id_funcion)
 )ENGINE=InnoDB;
 
 CREATE TABLE area(
     id_area int NOT NULL AUTO_INCREMENT,
+    sueldo_por_hora int NOT NULL,
     nombre_area varchar(100) NOT NULL,
     PRIMARY KEY (id_area)
 )ENGINE=InnoDB;
 
 CREATE TABLE categoria(
     id_categoria int NOT NULL AUTO_INCREMENT,
+    sueldo_por_hora int NOT NULL,
     nombre_categoria varchar(100) NOT NULL,
     PRIMARY KEY (id_categoria)
 )ENGINE=InnoDB;
@@ -24,8 +27,6 @@ CREATE TABLE categoria(
 CREATE TABLE cargo(
     id_cargo int NOT NULL AUTO_INCREMENT,
     nombre_cargo varchar(100) NOT NULL,
-    sueldo_por_hora int NOT NULL,
-    sueldo_por_mes int NOT NULL,
     PRIMARY KEY (id_cargo),
     id_funcion int,
     id_area int,
@@ -48,9 +49,9 @@ CREATE TABLE empleado(
     barrio varchar(100) NOT NULL,
     ciudad varchar(100) NOT NULL,
     depto int,
+    jefe BIT,
     fecha_de_inicio_cargo_actual date NOT NULL,
     id_cargo int,
-    cantidad_faltas_mes int,
     PRIMARY KEY (numero_legajo),
     FOREIGN KEY (id_cargo) REFERENCES cargo(id_cargo)
 )ENGINE=InnoDB;
@@ -124,6 +125,8 @@ CREATE TABLE modifico_historial(/*5*/
 CREATE TABLE jornada(
     id_jornada int NOT NULL AUTO_INCREMENT,
     mes varchar(12) NOT NULL,
+    año int NOT NULL,
+    faltas int,
     horario_de_salida time NOT NULL,
     horario_de_entrada time NOT NULL,
     numero_legajo int,
