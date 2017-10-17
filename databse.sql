@@ -113,7 +113,7 @@ CREATE TABLE historial(
     FOREIGN KEY (numero_legajo) REFERENCES empleado(numero_legajo)
 )ENGINE=InnoDB;
 
-CREATE TABLE modifico_historial(/*5*/
+CREATE TABLE modifico_historial(
     id_modifico_historial int NOT NULL AUTO_INCREMENT,
     id_historial int,
     id_usuario int,
