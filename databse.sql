@@ -1,7 +1,7 @@
 /*mysql -uubd17_g7 -poow2We3s -h172.18.7.140
 mysql -uubd17_g7 -poow2We3s -h172.18.7.140 < databse.sql
 https://www.w3schools.com/sql/default.asp*/
-/*use bd17_g7;*/
+use bd17_g7;
 
 CREATE TABLE funcion(
     id_funcion int NOT NULL AUTO_INCREMENT,
