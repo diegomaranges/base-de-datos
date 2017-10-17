@@ -76,7 +76,7 @@ CREATE TABLE legajo(
 )ENGINE=InnoDB;
 
 CREATE TABLE telefono(
-    numero int NOT NULL AUTO_INCREMENT,
+    numero int NOT NULL,
     numero_legajo int,
     PRIMARY KEY (numero),
     FOREIGN KEY (numero_legajo) REFERENCES empleado(numero_legajo)
