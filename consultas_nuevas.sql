@@ -4,7 +4,7 @@
 CREATE VIEW numer_faltas AS
   (SELECT count(*)
   FROM jornada j
-  WHERE j.faltas > 2 and j.mes = 'octubre' and j.año = 2017);
+  WHERE j.f_mes > 2 and j.mes = 'octubre' and j.año = 2017);
 
 /* Promedio de horas trabajadas por “empleados por hora” por año y mes (e.g. Febrero/2002). */
 DELIMITER //
@@ -89,62 +89,62 @@ DELIMITER //
 CREATE PROCEDURE faltas_mes(OUT enero int, OUT febrero int, OUT marso int, OUT abril int
   OUT mayo int, OUT junio int, OUT julio int , OUT agosto int, OUT septiembre int, OUT octubre int, OUT noviembre int
   OUT diciembre int)
-  SELECT avg(j.faltas) into enero
+  SELECT avg(j.f_mes) into enero
   FROM empleado e, jornada j
   WHERE e.numero_legajo = j.numero_legajo AND j.mes like 'enero'
   and e.tipo_de_jornada like '%fijo%';
 
-  SELECT avg(j.faltas) into febrero
+  SELECT avg(j.f_mes) into febrero
   FROM empleado e, jornada j
   WHERE e.numero_legajo = j.numero_legajo AND j.mes like 'febrero'
   and e.tipo_de_jornada like '%fijo%';
 
-  SELECT avg(j.faltas) into marso
+  SELECT avg(j.f_mes) into marso
   FROM empleado e, jornada j
   WHERE e.numero_legajo = j.numero_legajo AND j.mes like 'marso'
   and e.tipo_de_jornada like '%fijo%';
 
-  SELECT avg(j.faltas) into abril
+  SELECT avg(j.f_mes) into abril
   FROM empleado e, jornada j
   WHERE e.numero_legajo = j.numero_legajo AND j.mes like 'abril'
   and e.tipo_de_jornada like '%fijo%';
 
-  SELECT avg(j.faltas) into mayo
+  SELECT avg(j.f_mes) into mayo
   FROM empleado e, jornada j
   WHERE e.numero_legajo = j.numero_legajo AND j.mes like 'mayo'
   and e.tipo_de_jornada like '%fijo%';
 
-  SELECT avg(j.faltas) into junio
+  SELECT avg(j.f_mes) into junio
   FROM empleado e, jornada j
   WHERE e.numero_legajo = j.numero_legajo AND j.mes like 'junio'
   and e.tipo_de_jornada like '%fijo%';
 
-  SELECT avg(j.faltas) into julio
+  SELECT avg(j.f_mes) into julio
   FROM empleado e, jornada j
   WHERE e.numero_legajo = j.numero_legajo AND j.mes like 'julio'
   and e.tipo_de_jornada like '%fijo%';
 
-  SELECT avg(j.faltas) into agosto
+  SELECT avg(j.f_mes) into agosto
   FROM empleado e, jornada j
   WHERE e.numero_legajo = j.numero_legajo AND j.mes like 'agosto'
   and e.tipo_de_jornada like '%fijo%';
 
-  SELECT avg(j.faltas) into septiembre
+  SELECT avg(j.f_mes) into septiembre
   FROM empleado e, jornada j
   WHERE e.numero_legajo = j.numero_legajo AND j.mes like 'septiembre'
   and e.tipo_de_jornada like '%fijo%';
 
-  SELECT avg(j.faltas) into octubre
+  SELECT avg(j.f_mes) into octubre
   FROM empleado e, jornada j
   WHERE e.numero_legajo = j.numero_legajo AND j.mes like 'octubre'
   and e.tipo_de_jornada like '%fijo%';
 
-  SELECT avg(j.faltas) into noviembre
+  SELECT avg(j.f_mes) into noviembre
   FROM empleado e, jornada j
   WHERE e.numero_legajo = j.numero_legajo AND j.mes like 'noviembre'
   and e.tipo_de_jornada like '%fijo%';
 
-  SELECT avg(j.faltas) into diciembre
+  SELECT avg(j.f_mes) into diciembre
   FROM empleado e, jornada j
   WHERE e.numero_legajo = j.numero_legajo AND j.mes like 'diciembre'
   and e.tipo_de_jornada like '%fijo%';
