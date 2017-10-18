@@ -64,12 +64,21 @@ END; //
 DELIMITER;
 
 /* Cantidad de empleados por categoría, área y función. */
-SELECT c.nombre_categoria, a.nombre_area, f.nombre_funcion
-    FROM empleado e, cargo ca, funcion f, area a, categoria c, cv
-    WHERE e.id_cargo = cv.id_cargo and e.id_cargo = ca.id_cargo
-    and ca.id_funcion = f.id_funcion and ca.id_area = a.id_area
-    and ca.id_categoria = c.id_categoria and e.nombre like 'Oberbrunner%'
-    and cv.fecha_inicio_cargo_previo like '19%';
+DELIMITER //
+CREATE PROCEDURE cant_empleados(OUT num_categoria int, OUT num_area int, OUT num_funcion int)
+  BEGIN
+  SELECT count(*) INTO num_funcion
+  FROM empleado e, cargo p, funcion f, jornada j
+  WHERE e.id_cargo = p.id_cargo AND p.id_funcion = f.id_funcion;
+  SELECT count(*) INTO num_categoria
+  FROM empleado e, cargo p, funcion f, categoria c
+  WHERE e.id_cargo = p.id_cargo AND p.id_categoria = c.id_categoria;
+  SELECT count(*) INTO num_area
+  FROM empleado e, cargo p, funcion f, area a
+  WHERE e.id_cargo = p.id_cargo AND p.id_funcion = a.id_area;
+  and ;
+END; //
+DELIMITER;
 
 
 /* Cantidad de faltas por año por área, función y categoría de todos los empleados fijos. */
