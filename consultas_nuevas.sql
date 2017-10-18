@@ -1,13 +1,24 @@
 
 
 /* Cantidad de empleados con más de 2 faltas en el mes actual */
-SELECT * FROM empleado WHERE nombre like 'Ortiz%';
+CREATE VIEW numer_faltas AS
+  (SELECT count(*)
+  FROM empleado e
+  WHERE e.faltas > 2);
 
 /* Promedio de horas trabajadas por “empleados por hora” por año y mes (e.g. Febrero/2002). */
-SELECT c.nombre_categoria
-    FROM categoria c, empleado e, cargo ca
-    WHERE e.id_cargo = ca.id_cargo AND ca.id_categoria = c.id_categoria
-    and e.nombre like 'Sim%';
+DELIMITER //
+CREATE PROCEDURE empleados_por_hora(mes varchar(12), año int)
+BEGIN
+  SELECT avg((e.cantidad_de_horas_trabajadas) * (a.sueldo_por_hora +
+              f.sueldo_por_hora + c.sueldo_por_hora))
+      FROM empleado e, cargo p, area a, funcion f, categoria c, jornada j
+      WHERE e.id_cargo = p.id_cargo and p.id_categoria = c.id_categoria
+      and p.id_area = a.id_area and p.id_funcion = f.id_funcion
+      and e.tipo_de_trabajo like '%hora%' and j.numero_legajo = e.numero_legajo
+      and j.mes = mes and j.año = año;
+END;//
+DELIMITER;
 
 /* Promedio de monto pagado a “empleados por hora” por año y
 mes (sueldo se calcula => horas trabajadas * valor hora). */
