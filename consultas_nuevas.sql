@@ -3,8 +3,8 @@
 /* Cantidad de empleados con más de 2 faltas en el mes actual */
 CREATE VIEW numer_faltas AS
   (SELECT count(*)
-  FROM empleado e
-  WHERE e.faltas > 2);
+  FROM jornada j
+  WHERE j.faltas > 2 and j.mes = 'octubre' and j.año = 2017);
 
 /* Promedio de horas trabajadas por “empleados por hora” por año y mes (e.g. Febrero/2002). */
 DELIMITER //
