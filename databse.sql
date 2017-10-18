@@ -42,7 +42,7 @@ CREATE TABLE empleado(
     dni int NOT NULL,
     estado varchar(100) NOT NULL,
     cantidad_de_horas_trabajadas int NOT NULL,
-    tipo_de_turno varchar(100) NOT NULL,
+    tipo_de_trabajo varchar(100) NOT NULL/*hora, fijo, hora-fijo*/,
     fecha_de_ingreso date NOT NULL,
     calle varchar(100) NOT NULL,
     numero int NOT NULL,
