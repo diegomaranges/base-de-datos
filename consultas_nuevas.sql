@@ -32,10 +32,12 @@ CREATE VIEW vende_horas AS
   WHERE e.tipo_de_jornada like 'hora-fijo');
 
 /* Dar en forma de tabla el curriculum de los empleados que son jefes (debería haber pocos) */
-SELECT e.nombre
-    FROM area a, empleado e, cargo ca
-    WHERE e.id_cargo = ca.id_cargo AND ca.id_area = a.id_area
-    and a.nombre_area like 'nam%';
+CREATE VIEW curriculum AS
+  SELECT e.nombre, cv.fecha_inicio_cargo_previo, cv.fecha_fin_cargo_previo,
+  p.nombre_cargo
+  FROM empleado e, cargo p, cv
+  WHERE e.numero_legajo = cv.numero_legajo AND p.id_cargo = cv.id_cargo
+  and e.jefe = 1;
 
 /* Recibos de sueldo del último año comprendido entre Agosto/año anterior y
 Agosto/año actual de un empleado en particular. */
