@@ -12,7 +12,7 @@ CREATE PROCEDURE empleados_por_hora(mes varchar(12), año int)
 BEGIN
   SELECT avg(e.cantidad_de_horas_trabajadas)
       FROM empleado e, cargo p, area a, funcion f, categoria c, jornada j
-      WHERE e.id_cargo = p.id_cargo and e.tipo_de_trabajo like '%hora%'
+      WHERE e.id_cargo = p.id_cargo and e.tipo_de_jornada like '%hora%'
       and j.numero_legajo = e.numero_legajo and j.mes = mes and j.año = año;
 END;//
 DELIMITER;
@@ -26,10 +26,10 @@ SELECT a.nombre_area
 
 /* Todos los empleados que venden horas a la empresa, es decir
 que además de empleados mensuales sean empleados por hora. */
-SELECT f.nombre_funcion
-    FROM funcion f, empleado e, cargo ca
-    WHERE e.id_cargo = ca.id_cargo AND ca.id_funcion = f.id_funcion
-    and e.nombre like 'McKenzie%';
+CREATE VIEW vende_horas AS
+  (SELECT e.nombre
+  FROM empleado e
+  WHERE e.tipo_de_jornada like 'hora-fijo');
 
 /* Dar en forma de tabla el curriculum de los empleados que son jefes (debería haber pocos) */
 SELECT e.nombre
