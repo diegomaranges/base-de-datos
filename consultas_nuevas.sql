@@ -85,6 +85,70 @@ DELIMITER;
 
 
 /* Promedio de faltas de todos los empleados fijos por mes. */
+DELIMITER //
+CREATE PROCEDURE faltas_mes(OUT enero int, OUT febrero int, OUT marso int, OUT abril int
+  OUT mayo int, OUT junio int, OUT julio int , OUT agosto int, OUT septiembre int, OUT octubre int, OUT noviembre int
+  OUT diciembre int)
+  SELECT avg(j.faltas) into enero
+  FROM empleado e, jornada j
+  WHERE e.numero_legajo = j.numero_legajo AND j.mes like 'enero'
+  and e.tipo_de_jornada like '%fijo%';
 
+  SELECT avg(j.faltas) into febrero
+  FROM empleado e, jornada j
+  WHERE e.numero_legajo = j.numero_legajo AND j.mes like 'febrero'
+  and e.tipo_de_jornada like '%fijo%';
+
+  SELECT avg(j.faltas) into marso
+  FROM empleado e, jornada j
+  WHERE e.numero_legajo = j.numero_legajo AND j.mes like 'marso'
+  and e.tipo_de_jornada like '%fijo%';
+
+  SELECT avg(j.faltas) into abril
+  FROM empleado e, jornada j
+  WHERE e.numero_legajo = j.numero_legajo AND j.mes like 'abril'
+  and e.tipo_de_jornada like '%fijo%';
+
+  SELECT avg(j.faltas) into mayo
+  FROM empleado e, jornada j
+  WHERE e.numero_legajo = j.numero_legajo AND j.mes like 'mayo'
+  and e.tipo_de_jornada like '%fijo%';
+
+  SELECT avg(j.faltas) into junio
+  FROM empleado e, jornada j
+  WHERE e.numero_legajo = j.numero_legajo AND j.mes like 'junio'
+  and e.tipo_de_jornada like '%fijo%';
+
+  SELECT avg(j.faltas) into julio
+  FROM empleado e, jornada j
+  WHERE e.numero_legajo = j.numero_legajo AND j.mes like 'julio'
+  and e.tipo_de_jornada like '%fijo%';
+
+  SELECT avg(j.faltas) into agosto
+  FROM empleado e, jornada j
+  WHERE e.numero_legajo = j.numero_legajo AND j.mes like 'agosto'
+  and e.tipo_de_jornada like '%fijo%';
+
+  SELECT avg(j.faltas) into septiembre
+  FROM empleado e, jornada j
+  WHERE e.numero_legajo = j.numero_legajo AND j.mes like 'septiembre'
+  and e.tipo_de_jornada like '%fijo%';
+
+  SELECT avg(j.faltas) into octubre
+  FROM empleado e, jornada j
+  WHERE e.numero_legajo = j.numero_legajo AND j.mes like 'octubre'
+  and e.tipo_de_jornada like '%fijo%';
+
+  SELECT avg(j.faltas) into noviembre
+  FROM empleado e, jornada j
+  WHERE e.numero_legajo = j.numero_legajo AND j.mes like 'noviembre'
+  and e.tipo_de_jornada like '%fijo%';
+
+  SELECT avg(j.faltas) into diciembre
+  FROM empleado e, jornada j
+  WHERE e.numero_legajo = j.numero_legajo AND j.mes like 'diciembre'
+  and e.tipo_de_jornada like '%fijo%';
+END; //
+DELIMITER;
 
 /* Menor y mayor cantidad de faltas por empleado por mes. */
