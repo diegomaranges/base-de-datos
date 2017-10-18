@@ -10,13 +10,10 @@ CREATE VIEW numer_faltas AS
 DELIMITER //
 CREATE PROCEDURE empleados_por_hora(mes varchar(12), año int)
 BEGIN
-  SELECT avg((e.cantidad_de_horas_trabajadas) * (a.sueldo_por_hora +
-              f.sueldo_por_hora + c.sueldo_por_hora))
+  SELECT avg(e.cantidad_de_horas_trabajadas)
       FROM empleado e, cargo p, area a, funcion f, categoria c, jornada j
-      WHERE e.id_cargo = p.id_cargo and p.id_categoria = c.id_categoria
-      and p.id_area = a.id_area and p.id_funcion = f.id_funcion
-      and e.tipo_de_trabajo like '%hora%' and j.numero_legajo = e.numero_legajo
-      and j.mes = mes and j.año = año;
+      WHERE e.id_cargo = p.id_cargo and e.tipo_de_trabajo like '%hora%'
+      and j.numero_legajo = e.numero_legajo and j.mes = mes and j.año = año;
 END;//
 DELIMITER;
 
