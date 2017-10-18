@@ -5,21 +5,21 @@ use bd17_g7;
 
 CREATE TABLE funcion(
     id_funcion int NOT NULL AUTO_INCREMENT,
-    sueldo_por_hora int NOT NULL,
+    sueldo_por_hora_f int NOT NULL,
     nombre_funcion varchar(100) NOT NULL,
     PRIMARY KEY (id_funcion)
 )ENGINE=InnoDB;
 
 CREATE TABLE area(
     id_area int NOT NULL AUTO_INCREMENT,
-    sueldo_por_hora int NOT NULL,
+    sueldo_por_hora_a int NOT NULL,
     nombre_area varchar(100) NOT NULL,
     PRIMARY KEY (id_area)
 )ENGINE=InnoDB;
 
 CREATE TABLE categoria(
     id_categoria int NOT NULL AUTO_INCREMENT,
-    sueldo_por_hora int NOT NULL,
+    sueldo_por_hora_c int NOT NULL,
     nombre_categoria varchar(100) NOT NULL,
     PRIMARY KEY (id_categoria)
 )ENGINE=InnoDB;
