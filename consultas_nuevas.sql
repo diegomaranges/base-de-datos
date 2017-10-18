@@ -47,10 +47,21 @@ SELECT e.nombre
     and c.nombre_categoria like 'quas%';
 
 /* Sueldo promedio por categoría, área y función de los empleados trabajando actualmente. */
-SELECT e.nombre
-    FROM funcion f, empleado e, cargo ca
-    WHERE e.id_cargo = ca.id_cargo AND ca.id_funcion = f.id_funcion
-    and f.nombre_funcion like 'explicabo%';
+DELIMITER //
+CREATE PROCEDURE promedio_c_a_f(OUT sueldo_categoria int, OUT sueldo_area int, OUT sueldo_funcion int)
+  BEGIN
+  SELECT avg(f.sueldo_por_hora_f * e.cantidad_de_horas_trabajadas) INTO sueldo_funcion
+  FROM empleado e, cargo p, funcion f, jornada j
+  WHERE e.id_cargo = p.id_cargo AND p.id_funcion = f.id_funcion;
+  SELECT avg(c.sueldo_por_hora_c * e.cantidad_de_horas_trabajadas) INTO sueldo_categoria
+  FROM empleado e, cargo p, funcion f, categoria c
+  WHERE e.id_cargo = p.id_cargo AND p.id_categoria = c.id_categoria;
+  SELECT avg(a.sueldo_por_hora_a * e.cantidad_de_horas_trabajadas) INTO sueldo_area
+  FROM empleado e, cargo p, funcion f, area a
+  WHERE e.id_cargo = p.id_cargo AND p.id_funcion = a.id_area;
+  and ;
+END; //
+DELIMITER;
 
 /* Cantidad de empleados por categoría, área y función. */
 SELECT c.nombre_categoria, a.nombre_area, f.nombre_funcion
